@@ -1,0 +1,47 @@
+@media screen and (min-width: 1280px) {
+  .select-container {
+    max-width: 880px;
+  }
+}
+
+.select-form {
+  width: 100%;
+  display: flex;
+}
+
+.select-form select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.select-form select:focus {
+  outline-color: var(--yellow-1);
+}
+
+.select-form button {
+  background-color: var(--yellow-1);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 13px;
+  transition: background-color 0.25s ease-out;
+}
+
+.disable-btn {
+  cursor: not-allowed !important;
+}
+
+.select-form button:hover {
+  background-color: #edc663;
+}
+
+@media screen and (min-width: 1280px) {
+  .select-form select {
+    margin-right: 10px;
+  }
+}

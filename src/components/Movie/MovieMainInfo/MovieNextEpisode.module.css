@@ -1,0 +1,80 @@
+.justify-items {
+  justify-items: center;
+}
+
+.justify-items-start {
+  justify-items: start;
+}
+
+.next-episode {
+  margin-bottom: 15px;
+  color: #fff;
+  padding-left: 12px;
+  position: relative;
+}
+
+.next-episode::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background-color: var(--yellow);
+  border-radius: 3px;
+}
+
+.next-episode h5 {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.next-episode p {
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+
+.watch-on {
+  background-color: var(--yellow-1);
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 6px;
+}
+
+.watch-on svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.watch-on p {
+  font-size: 12px;
+}
+
+.add-to {
+  background-color: var(--transparent-text-color-degree-2);
+  border-radius: 3px;
+  color: #fff;
+}
+
+.add-to span {
+  font-size: 22px;
+  display: inline-block;
+  padding-left: 6px;
+}
+
+.add-to h5 {
+  font-size: 14px;
+  letter-spacing: 0.4px;
+}
+
+.svg {
+  border-left: 2px solid var(--main-bg-color);
+  padding: 4px;
+}
+
+.svg button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}

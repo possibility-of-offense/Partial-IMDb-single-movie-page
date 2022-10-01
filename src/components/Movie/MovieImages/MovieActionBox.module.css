@@ -1,0 +1,19 @@
+.box {
+  border-radius: 0 5px 5px 0;
+  background-color: rgb(44, 44, 44);
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.25s ease-out;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.box:hover {
+  background-color: rgb(64, 64, 64);
+}

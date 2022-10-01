@@ -1,0 +1,39 @@
+.rating-info > * {
+  margin: 0 10px;
+}
+
+.yellow-icon {
+  color: var(--yellow);
+}
+
+.blue-icon {
+  color: var(--blue);
+}
+
+.blue-text {
+  color: var(--blue);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 20px;
+  letter-spacing: 0.1666rem;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.numbers span {
+  display: inline-block;
+  margin: 0 1px;
+}
+
+.numbers span:first-of-type {
+  color: #fff;
+  font-size: 21px;
+}
+
+.numbers span:nth-of-type(2) {
+  color: var(--transparent-text-color-degree-1);
+}
+
+.popularity p {
+  margin: 0 5px;
+}

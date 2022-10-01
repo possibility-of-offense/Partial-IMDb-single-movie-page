@@ -1,0 +1,13 @@
+.genre-info li {
+  color: var(--transparent-text-color-degree-1);
+  font-size: 14px;
+  line-height: 20px;
+  margin-right: 10px;
+}
+
+@media (max-width: 1023px) {
+  .genre-info__mobile-portrait {
+    justify-content: center;
+    margin: 1rem 0;
+  }
+}

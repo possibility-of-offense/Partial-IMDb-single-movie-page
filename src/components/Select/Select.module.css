@@ -1,0 +1,14 @@
+.select {
+  margin: 1.5rem 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.select h3 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.selected-movie {
+  text-decoration: underline;
+}

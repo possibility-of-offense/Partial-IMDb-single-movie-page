@@ -1,0 +1,20 @@
+.rating-box > p {
+  letter-spacing: 0.1666rem;
+  line-height: 1rem;
+  color: var(--transparent-text-color-degree-1);
+  white-space: nowrap;
+  margin-bottom: 0.25rem;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rating-box__info {
+  border-radius: 5px;
+  padding: 2px 5px;
+  transition: background-color 0.25s ease-out;
+  cursor: pointer;
+}
+
+.rating-box__info:hover {
+  background-color: var(--hover-bg-degree-1);
+}

@@ -1,0 +1,6 @@
+@media (max-width: 1023px) {
+  .movie-info__mobile-portrait {
+    grid-template-columns: 1fr !important;
+    grid-gap: 1rem !important;
+  }
+}
