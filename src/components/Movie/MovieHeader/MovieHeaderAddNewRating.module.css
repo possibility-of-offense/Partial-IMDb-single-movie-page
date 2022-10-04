@@ -1,0 +1,11 @@
+.disable-btn {
+  opacity: 0.3;
+  cursor: not-allowed !important;
+}
+
+.error {
+  font-size: 14px;
+  color: red;
+  margin-top: 10px;
+  font-style: italic;
+}

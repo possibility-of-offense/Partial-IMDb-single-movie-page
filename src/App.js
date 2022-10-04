@@ -58,15 +58,23 @@ function App() {
   async function handleSetMovie(obj) {
     loadingMovieDispatch({ type: "START_FETCHING" });
     const moviesCol = doc(db, "movies", obj.id);
-    const moviesSnapshot = await getDoc(moviesCol);
+    const movieSnapshot = await getDoc(moviesCol);
 
-    if (moviesSnapshot.exists()) {
+    if (movieSnapshot.exists()) {
+      const obj = {
+        id: movieSnapshot.id,
+        ...movieSnapshot.data(),
+      };
       loadingMovieDispatch({
         type: "SET_MOVIE",
-        payload: moviesSnapshot.data(),
+        payload: obj,
       });
       loadingMovieDispatch({ type: "SHOW_MOVIE" });
     }
+  }
+
+  function ratingBeingUpdated() {
+    handleSetMovie({ id: loadingMovieState.movie.id });
   }
 
   return (
@@ -82,7 +90,12 @@ function App() {
       ))}
       {loadingMovieState.showMovie === true &&
         Object.keys(loadingMovieState.movie).length > 0 && (
-          <MovieContext.Provider value={{ movie: loadingMovieState.movie }}>
+          <MovieContext.Provider
+            value={{
+              movie: loadingMovieState.movie,
+              ratingUpdated: ratingBeingUpdated,
+            }}
+          >
             <Movie />
           </MovieContext.Provider>
         )}

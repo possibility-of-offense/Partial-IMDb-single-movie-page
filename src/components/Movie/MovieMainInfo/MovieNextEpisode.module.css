@@ -1,3 +1,7 @@
+.next-episode-wrapper {
+  position: relative;
+}
+
 .justify-items {
   justify-items: center;
 }
