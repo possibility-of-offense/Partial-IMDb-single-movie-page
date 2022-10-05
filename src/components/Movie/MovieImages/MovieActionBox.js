@@ -1,24 +1,16 @@
 import Svg from "../../UI/Svg";
-import { useCallback, useState } from "react";
 
 import classes from "./MovieActionBox.module.css";
 import Tooltip from "../../UI/Tooltip";
+import useTooltip from "../../../hooks/use-tooltip";
 
 function MovieActionBox(props) {
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleHover = useCallback(() => {
-    setIsHovering((prev) => !prev);
-  }, []);
-
-  const handleUnhover = useCallback(() => {
-    setIsHovering((prev) => !prev);
-  }, []);
+  const [isHovering, action] = useTooltip();
 
   return (
     <div
-      onMouseEnter={handleHover}
-      onMouseLeave={handleUnhover}
+      onMouseEnter={() => action("hover")}
+      onMouseLeave={() => action("unhover")}
       className={classes.box}
     >
       {isHovering && <Tooltip></Tooltip>}

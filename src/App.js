@@ -7,6 +7,8 @@ import {
   getDoc,
   getDocs,
   getFirestore,
+  query,
+  where,
 } from "firebase/firestore/lite";
 import app from "./config/config";
 import Select from "./components/Select/Select";
@@ -16,6 +18,8 @@ import loadingMovieReducer from "./reducers/loading-movie";
 
 import SelectContext from "./context/select-context";
 import MovieContext from "./context/movie-context";
+// import { query, where } from "firebase/firestore";
+const db = getFirestore(app);
 
 function App() {
   const logo = useMemo(() => {
@@ -31,8 +35,6 @@ function App() {
       movie: {},
     }
   );
-
-  const db = getFirestore(app);
 
   useEffect(() => {
     async function getMovies(db) {
@@ -61,10 +63,27 @@ function App() {
     const movieSnapshot = await getDoc(moviesCol);
 
     if (movieSnapshot.exists()) {
-      const obj = {
+      let obj = {
         id: movieSnapshot.id,
+        popularity: 0,
         ...movieSnapshot.data(),
       };
+
+      const getPopularity = await getDocs(
+        query(
+          collection(db, "popularity"),
+          where("movie_id", "==", movieSnapshot.id)
+        )
+      );
+      if (getPopularity.docs.length) {
+        let popularityPersons = [];
+        getPopularity.docs.forEach((movie) => {
+          const data = movie.data();
+          popularityPersons = data.persons;
+        });
+        obj["popularity"] = popularityPersons;
+      }
+
       loadingMovieDispatch({
         type: "SET_MOVIE",
         payload: obj,
