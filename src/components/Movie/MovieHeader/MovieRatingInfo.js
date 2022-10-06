@@ -6,12 +6,11 @@ import { useContext, useState } from "react";
 import MovieContext from "../../../context/movie-context";
 import MovieHeaderModalForm from "./MovieHeaderModalForm";
 import MovieHeaderAddNewRating from "./MovieHeaderAddNewRating";
+import MovieHeaderShowPopularityPersons from "./MovieHeaderShowPopularityPersons";
 
 function MovieRatingInfo() {
   const movieContext = useContext(MovieContext);
   const [showModal, setShowModal] = useState({ show: false, form: null });
-
-  console.log(movieContext);
 
   function handleTogglingModalVisibility(type) {
     setShowModal((prev) => ({
@@ -25,6 +24,11 @@ function MovieRatingInfo() {
       {showModal.show && showModal.component === "add-new-rating" && (
         <MovieHeaderModalForm onHideModal={setShowModal}>
           <MovieHeaderAddNewRating onHideModal={setShowModal} />
+        </MovieHeaderModalForm>
+      )}
+      {showModal.show && showModal.component === "popularity" && (
+        <MovieHeaderModalForm onHideModal={setShowModal} removePaddings={true}>
+          <MovieHeaderShowPopularityPersons onHideModal={setShowModal} />
         </MovieHeaderModalForm>
       )}
       <MovieRatingInfoBox
@@ -55,6 +59,12 @@ function MovieRatingInfo() {
         classes={`ipc-icon ipc-icon--popularity-neutral sc-edc76a2-5 bzOzjI transparent-text-color-degree-1`}
         id="iconContext-popularity-neutral"
         path="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4 0-7.4-3-8-6.9l10-.1v2c0 .5.6.7 1 .4l3-3c.2-.2.2-.5 0-.7l-3-3c-.4-.4-.9-.1-.9.3v2h-10c.4-4 3.8-7 7.9-7 4.4 0 8 3.6 8 8s-3.6 8-8 8z"
+        onClick={handleTogglingModalVisibility.bind(null, "popularity")}
+        toDisable={
+          !Array.isArray(movieContext.movie.popularity) ||
+          movieContext.movie.popularity.length === 0
+        }
+        msgForAlert="No popularity info yet!"
       >
         <div
           className={`transparent-text-color-degree-1 ${classes.popularity}`}

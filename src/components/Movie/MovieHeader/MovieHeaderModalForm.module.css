@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
 }
 
 .modal-form {
@@ -18,6 +19,11 @@
   padding: 1rem;
   border-radius: 4px;
   text-align: center;
+  z-index: 11;
+}
+
+.modal-form.remove-paddings {
+  padding: 0;
 }
 
 .modal-form label {

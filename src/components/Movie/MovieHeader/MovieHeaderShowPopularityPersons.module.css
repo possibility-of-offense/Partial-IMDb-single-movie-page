@@ -1,0 +1,35 @@
+.popularity {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.popularity h3 {
+  padding: 1rem 0;
+  background-color: #f4f4f4;
+}
+
+.popularity ul {
+  flex-grow: 1;
+  list-style: none outside;
+  border-top: 1px solid var(--transparent-text-color-degree-2);
+  background-color: #28c2ff33;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.popularity ul li {
+  padding: 6px;
+  border-top: 1px dotted var(--transparent-text-color-degree-2);
+  font-size: 14px;
+  transition: background-color 0.3s ease-out;
+}
+
+.popularity ul li:hover {
+  background-color: #28c2ff8e;
+}

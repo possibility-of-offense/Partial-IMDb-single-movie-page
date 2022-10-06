@@ -1,0 +1,21 @@
+.alert {
+  position: fixed;
+  top: -50%;
+  width: 100%;
+  z-index: 10;
+  padding: 1rem;
+  text-align: center;
+  background-color: var(--yellow);
+  animation: showAlert 0.5s ease-in-out forwards;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+@keyframes showAlert {
+  from {
+    top: -50%;
+  }
+  to {
+    top: 0%;
+  }
+}
