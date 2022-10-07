@@ -4,52 +4,73 @@ import app from "../../../config/config";
 import MovieContext from "../../../context/movie-context";
 
 import classes from "./MovieHeaderAddNewRating.module.css";
+import Input from "../../UI/Input";
+import { validateBetween } from "../../../helpers/factories";
+const { errorMessage, validate } = validateBetween(0, 10);
 
 function MovieHeaderAddNewRating(props) {
   const [rating, setRating] = useState("");
   const [error, setError] = useState(null);
+  const [wasTouched, setWasTouched] = useState(false);
 
   useEffect(() => {
-    if (rating !== null) {
-      if (rating > 10) {
-        setError("No more than 10");
+    if (rating !== "") {
+      if (!validate(rating) && wasTouched) {
+        setError(errorMessage);
       } else {
         setError(null);
       }
     }
-  }, [rating]);
+  }, [rating, wasTouched]);
 
   const movieContext = useContext(MovieContext);
   const db = getFirestore(app);
   const movie = doc(db, "movies", movieContext.movie.id);
 
-  const handleUpdateRating = useCallback(async (e) => {
-    e.preventDefault();
-    const getMovie = await getDoc(movie);
-    let { rating } = getMovie.data();
-    let newRating = rating + 10 / 10;
+  const { ratingUpdated } = movieContext;
+  const { onHideModal } = props;
 
-    if (newRating > 10) {
-      newRating = 10;
-    }
+  const handleUpdateRating = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setWasTouched(false);
 
-    await updateDoc(movie, {
-      rating: newRating,
-    });
-    movieContext.ratingUpdated();
+      let ratingParsed = Number(rating);
 
-    props.onHideModal(false);
-  }, []);
+      if (validate(ratingParsed)) {
+        setError("");
+        const getMovie = await getDoc(movie);
+        let { rating } = getMovie.data();
+        let newRating = rating + 10 / 10;
+        if (newRating > 10) {
+          newRating = 10;
+        }
+        await updateDoc(movie, {
+          rating: newRating,
+        });
+        ratingUpdated();
+        onHideModal(false);
+      } else {
+        setError(errorMessage);
+      }
+    },
+    [rating, onHideModal, movie, ratingUpdated]
+  );
 
   return (
     <form onSubmit={handleUpdateRating}>
       <h2>Add rating</h2>
       <br />
-      <label htmlFor="rating">Your rating</label>
-      <input
+
+      <Input
         type="number"
+        label="Set rating"
         value={rating}
-        onChange={(e) => setRating(e.target.value)}
+        onChange={setRating}
+        setIfWasTouched={setWasTouched}
+        onSetError={setError}
+        onValidate={validate}
+        onSetRating={setRating}
       />
       <button
         className={error !== null ? classes["disable-btn"] : ""}
