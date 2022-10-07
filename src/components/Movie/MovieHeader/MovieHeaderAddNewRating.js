@@ -14,7 +14,7 @@ function MovieHeaderAddNewRating(props) {
   const [wasTouched, setWasTouched] = useState(false);
 
   useEffect(() => {
-    if (rating !== "") {
+    if (rating !== null) {
       if (!validate(rating) && wasTouched) {
         setError(errorMessage);
       } else {

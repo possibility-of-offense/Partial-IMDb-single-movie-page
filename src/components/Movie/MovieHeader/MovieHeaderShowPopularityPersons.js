@@ -11,7 +11,10 @@ function MovieHeaderShowPopularityPersons() {
       <h3>People that are watching this frequently</h3>
       <ul>
         {movieContext.movie.popularity.map((el) => (
-          <li key={el.split(" ").join("").toLowerCase()}>{el}</li>
+          <li key={el.split(" ").join("").toLowerCase()}>
+            <img src="/images/user.png" alt="Person icon" title="Person icon" />
+            {el}
+          </li>
         ))}
       </ul>
     </div>
