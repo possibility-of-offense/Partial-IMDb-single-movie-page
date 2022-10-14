@@ -1,0 +1,48 @@
+.button {
+  background-color: var(--yellow);
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  position: absolute;
+  top: 70%;
+  transform: translateY(-50%) scale(0);
+  border-radius: 4px;
+  box-shadow: 1px 4px 1px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease-out, transform 1s ease-in;
+  user-select: none;
+  opacity: 0;
+}
+
+.button.show-btn {
+  animation: showBtn 0.25s ease-in-out forwards;
+}
+
+@keyframes showBtn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0);
+    top: 70%;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+    top: 50%;
+  }
+}
+
+.button:hover {
+  background-color: var(--yellow-1);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button.button-prev {
+  left: 0;
+}
+.button.button-next {
+  right: 0;
+}

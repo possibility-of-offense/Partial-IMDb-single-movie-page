@@ -8,6 +8,7 @@
   --hover-bg-degree-1: rgba(255, 255, 255, 0.2);
 
   --yellow: rgb(245, 197, 24);
+  --yellow-semi-transparent: rgba(245, 197, 24, 0.747);
   --yellow-1: #ffd400;
   --blue: rgb(87, 153, 239);
 }

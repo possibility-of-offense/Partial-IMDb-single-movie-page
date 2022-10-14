@@ -9,6 +9,12 @@ function loadingMovieReducer(state, action) {
     case "SET_MOVIE":
       state = { ...state, movie: action.payload };
       break;
+    case "SHOW_SLIDER":
+      state = { ...state, showPicturesSlider: !state.showPicturesSlider };
+      break;
+
+    default:
+      break;
   }
   return state;
 }

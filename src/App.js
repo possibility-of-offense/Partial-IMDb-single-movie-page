@@ -33,6 +33,7 @@ function App() {
       showMovie: null,
       startFetching: false,
       movie: {},
+      showPicturesSlider: false,
     }
   );
 
@@ -63,11 +64,25 @@ function App() {
     const movieSnapshot = await getDoc(moviesCol);
 
     if (movieSnapshot.exists()) {
-      let obj = {
+      let firestoreDoc = {
         id: movieSnapshot.id,
         popularity: 0,
         ...movieSnapshot.data(),
       };
+
+      const picturesCol = await getDocs(
+        collection(db, "movies", obj.id, "pictures")
+      );
+
+      if (picturesCol.docs.length > 0) {
+        let pictures = picturesCol.docs.map((doc) => {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        });
+        firestoreDoc["pictures"] = pictures;
+      }
 
       const getPopularity = await getDocs(
         query(
@@ -81,12 +96,12 @@ function App() {
           const data = movie.data();
           popularityPersons = data.persons;
         });
-        obj["popularity"] = popularityPersons;
+        firestoreDoc["popularity"] = popularityPersons;
       }
 
       loadingMovieDispatch({
         type: "SET_MOVIE",
-        payload: obj,
+        payload: firestoreDoc,
       });
       loadingMovieDispatch({ type: "SHOW_MOVIE" });
     }
@@ -94,6 +109,10 @@ function App() {
 
   function ratingBeingUpdated() {
     handleSetMovie({ id: loadingMovieState.movie.id });
+  }
+
+  function onShowPicturesSlider() {
+    loadingMovieDispatch({ type: "SHOW_SLIDER" });
   }
 
   return (
@@ -113,6 +132,9 @@ function App() {
             value={{
               movie: loadingMovieState.movie,
               ratingUpdated: ratingBeingUpdated,
+              pictures: loadingMovieState.movie.pictures,
+              onShowPicturesSliderHandle: onShowPicturesSlider,
+              showPicturesSlider: loadingMovieState.showPicturesSlider,
             }}
           >
             <Movie />
