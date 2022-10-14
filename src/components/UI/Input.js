@@ -13,7 +13,6 @@ function Input({
   onSetError,
   onValidate,
   onSetRating,
-  onSetTouched,
 }) {
   const [labelClass, setLabelClass] = useState(false);
   const [valueFilled, setValueFilled] = useState(false);
@@ -36,7 +35,7 @@ function Input({
       setValueFilled(false);
       setLabelClass(false);
       onSetRating("");
-      onSetTouched(false);
+      setIfWasTouched(false);
     }
   }
 
